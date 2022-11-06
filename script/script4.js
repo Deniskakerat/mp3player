@@ -1,46 +1,40 @@
 function createPlayer(number) {
-    return {
-        number_of_tracks: number,
-        currentTrack: 0,
-        tracks: [],
-        addtrack: function (music) {
-            this.tracks.push(music);
-        },
-        random: function () {
-           this.currentTrack = Math.floor(Math.random() * this.number_of_tracks);
-           console.log(this.currentTrack);
-        },
-        previousTrack: function () {
-            --this.currentTrack;
-        },
-        nextTrack: function () {
-            ++this.currentTrack;
-        },
-        setTrack: function (number) {
-            this.currentTrack = number;
-        },
-        printTrack: function () {
-            console.log("The current track is " + this.currentTrack);
-        }
-    }
+    this.number_of_tracks = number;
+    this.currentTrack = 0;
+    this.tracks = [];
+    this.addtrack = function (music) {
+        this.tracks.push(music);
+    };
+    this.random = function () {
+        this.currentTrack = Math.floor(Math.random() * this.number_of_tracks);
+        console.log(this.currentTrack);
+    };
+    this.previousTrack = function () {
+        --this.currentTrack;
+    };
+    this.nextTrack = function () {
+        ++this.currentTrack;
+    };
+    this.setTrack = function (number) {
+        this.currentTrack = number;
+    };
+    this.printTrack = function () {
+        console.log("The current track is " + this.currentTrack);
+    };
 }
-let track1 ={
-    name:" Stressed out",
-    author : "Twenty one pilots",
-    length: 2.14,
-    print : function (){
+
+function track(name,author,length){
+    this.name= name;
+    this.author= author;
+    this.length= length;
+    this.print = function () {
         console.log("The track" + this.name + " " + this.author + " " + this.length);
     }
 }
-let track2 ={
-    name:"Consumane",
-    author : "Twenty one pilots",
-    length: 3.38,
-    print : function (){
-        console.log("The track" + this.name + " " + this.author + " " + this.length);
-    }
-}
-let mp3 = createPlayer(2);
+
+track1 = new track("Srtessed out","Twenty one pilots", 2.48);
+track2 = new track("Consumane","Twenty one pilots",3.38)
+let mp3 = new createPlayer(2);
 mp3.addtrack(track1);
 mp3.addtrack(track2);
 mp3.printTrack();
@@ -51,15 +45,3 @@ mp3.tracks[mp3.currentTrack].print();
 mp3.random();
 mp3.printTrack();
 mp3.tracks[mp3.currentTrack].print();
-
-let mp3_1 = createPlayer(2);
-mp3_1.addtrack(track1);
-mp3_1.addtrack(track2);
-mp3_1.printTrack();
-mp3_1.tracks[mp3_1.currentTrack].print();
-mp3_1.nextTrack();
-mp3_1.printTrack();
-mp3_1.tracks[mp3_1.currentTrack].print();
-mp3_1.random();
-mp3_1.printTrack();
-mp3_1.tracks[mp3_1.currentTrack].print();
