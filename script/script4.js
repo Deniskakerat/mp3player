@@ -23,6 +23,7 @@ function createPlayer(number) {
         console.log("The current track is " + this.currentTrack);
     };
 }
+
 createPlayer.prototype.getLoudness = function () { // Публічний метод
     return this.__sound_loudness;
 };
@@ -38,15 +39,51 @@ createPlayer.prototype.__sound_loudness_valid = function (number) {
         return false;
     }
 };
-function track(name,author,length){
-    this.name= name;
-    this.author= author;
-    this.length= length;
+
+function track(name, author, length) {
+    this.name = name;
+    this.author = author;
+    this.length = length;
     this.print = function () {
         console.log("The track" + this.name + " " + this.author + " " + this.length);
     }
 }
 
+var slowed_track = {
+    type: "Slowed + reverb",
+    is_slowed: true
+}
+var beat_magico = {
+    length: 3.02,
+    author: "Duck"
+}
+let mp3 = new createPlayer(1);
+mp3.addtrack(beat_magico);
+console.log(mp3.tracks[mp3.currentTrack])
+beat_magico.__proto__ = slowed_track;
+console.log(mp3.tracks[mp3.currentTrack].is_slowed);
+
+var track2 = Object.create(slowed_track);
+track2.name = "PLSMRK";
+track2.author = "Pls";
+track2.length = 6.39;
+
+mp3.addtrack(track2);
+console.log(mp3.tracks[1]);
+console.log(mp3.tracks[mp3.currentTrack].is_slowed);
+
+function track() {
+    name : "Acid rain";
+    author : "Lorn";
+    length : 2.53;
+};
+
+track.prototype = slowed_track;
+var track3 = new track;
+mp3.addtrack(track3);
+console.log(mp3.tracks[2]);
+console.log(track3.is_slowed);
+/*
 track1 = new track("Srtessed out","Twenty one pilots", 2.48);
 track2 = new track("Consumane","Twenty one pilots",3.38)
 let mp3 = new createPlayer(2);
@@ -63,3 +100,4 @@ mp3.tracks[mp3.currentTrack].print();
 mp3.random();
 mp3.printTrack();
 mp3.tracks[mp3.currentTrack].print();
+*/
